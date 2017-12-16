@@ -1,0 +1,12 @@
+{
+  "name": "abc-import",
+  "version": "1.0.0",
+  "description": "Material Design icons by Google",
+  "main": "index.js",
+  "author": "Material Design Authors",
+  "license": "CC-BY-4.0",
+  "devDependencies": {
+    "webpack": "^3.9.1",
+    "antlr4": "^4.7"
+  }
+}

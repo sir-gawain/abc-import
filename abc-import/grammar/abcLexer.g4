@@ -2,13 +2,13 @@ lexer grammar abcLexer;
 
 X:  'X:';
 T:  'T:' -> pushMode(AnyText);
-A:  'A:' { getCharPositionInLine() == 2 }? -> pushMode(AnyText);
-B:  'B:' { getCharPositionInLine() == 2 }? -> pushMode(AnyText);
-C:  'C:' { getCharPositionInLine() == 2 }? -> pushMode(AnyText);
-D:  'D:' { getCharPositionInLine() == 2 }? -> pushMode(AnyText);
-F:  'F:' { getCharPositionInLine() == 2 }? -> pushMode(AnyText);
-G:  'G:' { getCharPositionInLine() == 2 }? -> pushMode(AnyText);
-H:  'H:' { getCharPositionInLine() == 2 }? -> pushMode(AnyText);
+A:  'A:' { this.column == 2 }? -> pushMode(AnyText);
+B:  'B:' { this.column == 2 }? -> pushMode(AnyText);
+C:  'C:' { this.column == 2 }? -> pushMode(AnyText);
+D:  'D:' { this.column == 2 }? -> pushMode(AnyText);
+F:  'F:' { this.column == 2 }? -> pushMode(AnyText);
+G:  'G:' { this.column == 2 }? -> pushMode(AnyText);
+H:  'H:' { this.column == 2 }? -> pushMode(AnyText);
 I:  'I:';
 K:  'K:';
 L:  'L:';
@@ -58,7 +58,7 @@ SY: 'y';
 SZ: 'z';
 //UNUSED               : [EIJYva-ln-tx-z];
 
-WSP_INTERNAL  : [\t\b\f\v] -> channel(HIDDEN);
+WSP_INTERNAL  : [\t\b\f] -> channel(HIDDEN);
 WSP           : WSP_INTERNAL+ -> channel(HIDDEN);
 
 LC      : WSP_INTERNAL* '\\' WSP_INTERNAL* EOL WSP_INTERNAL*  -> channel(HIDDEN);
@@ -145,7 +145,7 @@ INST_UNIT            : 'cm' | 'pt' | 'in';
 
 MIDI                 : 'midi' -> pushMode(Midi);
 
-SPECIAL              : '\\' ([`^'\'=;.vuanso~:|] [a-zA-Z]) | '\\\\' | '\\[';
+SPECIAL              : '\\' ([`^'=;.vuanso~:|] [a-zA-Z]) | '\\\\' | '\\[';
 
 INTEGER              : DIGIT+;
 SIGNED_INTEGER       : (PLUS | MINUS)? DIGIT+;
@@ -190,9 +190,9 @@ EOL: ('\r' | '\n' | '\r' '\n');
 
 COMMENT_START:  '%' -> pushMode(Comment);
 
-LX2: [\x21\x23-\x7E];
-LX3: [\x21-\x7E];
-LX4: [\x21-\x5C\x5E-\x7E];
+LX2: [!#-~];
+LX3: [!-~];
+LX4: [!-\\^-~];
 
 DECIMAL:  DIGIT+ (',' | '.') DIGIT+;
 
@@ -207,7 +207,6 @@ LETTER:
         '\u00d8'..'\u00f6' |
         '\u00f8'..'\u00ff' |
         '\u0100'..'\u1fff' |
-        '\u3040'..'\u318f' |
         '\u3040'..'\u318f' |
         '\u3300'..'\u337f' |
         '\u3400'..'\u3d2d' |
@@ -243,8 +242,8 @@ L_UNDERSCORE    : '_';
 L_TIMES         : '*';
 L_TILDE         : '~';
 L_LDASH         : '\\-';
-L_WSP_INTERNAL  : [\t\b\f\v] -> channel(HIDDEN);
-L_SPECIAL       : '\\' ([`^'\'=;.vuanso~:|] [a-zA-Z]) | '\\\\' | '\\[';
+L_WSP_INTERNAL  : [\t\b\f] -> channel(HIDDEN);
+L_SPECIAL       : '\\' ([`^'=;.vuanso~:|] [a-zA-Z]) | '\\\\' | '\\[';
 L_LX1           : [!"#$%&'()+,./:;<=>?@[^`{|}];
 L_RBPAREN       : ']';
 L_DIGIT         : ('0'..'9');
@@ -255,11 +254,11 @@ L_LETTER        :
         '\u0041'..'\u005a' |
         '\u005f' |
         '\u0061'..'\u007a' |
+        '\u00b4' |
         '\u00c0'..'\u00d6' |
         '\u00d8'..'\u00f6' |
         '\u00f8'..'\u00ff' |
         '\u0100'..'\u1fff' |
-        '\u3040'..'\u318f' |
         '\u3040'..'\u318f' |
         '\u3300'..'\u337f' |
         '\u3400'..'\u3d2d' |
