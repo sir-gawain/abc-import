@@ -1,1 +1,7 @@
 .idea/
+abc-import/node_modules/
+abc-import/grammar/abcLexer.interp
+abc-import/grammar/abcParser.interp
+abc-import/js/abcBundle.js
+abc-import/parser/
+abc-import/*.abc
