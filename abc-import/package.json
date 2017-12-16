@@ -1,12 +1,13 @@
 {
   "name": "abc-import",
-  "version": "1.0.0",
-  "description": "Material Design icons by Google",
-  "main": "index.js",
-  "author": "Material Design Authors",
-  "license": "CC-BY-4.0",
+  "version": "0.0.1",
+  "description": "ABC import plugin for MuseScore",
+  "main": "abc-import.qml",
+  "author": "Christian Welzel",
+  "license": "BSD",
   "devDependencies": {
-    "webpack": "^3.9.1",
-    "antlr4": "^4.7"
+    "antlr4": "^4.7",
+    "uglifyjs-webpack-plugin": "^1.1.4",
+    "webpack": "^3.9.1"
   }
 }
